@@ -6,11 +6,19 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
-
+/*class GradeSystems------
+ * To read the student's info's file, use a list to store the file by individual.
+ * @param weights[]: the weights to calculate totalGrade in class Grades
+ * @param aGrades: a list to store every student's info
+ */
 public class GradeSystems {
 	float weights[] = {0.1f, 0.1f, 0.1f, 0.3f, 0.4f};
 	Scanner w = new Scanner(System.in);
 	List<Grades> aGrades = new ArrayList<Grades>();
+	/*constructor GradeSystems-----
+	 * To read the file, parse the content and store it to aGrades.
+	 *  Time Estimated: O(n)
+	 */
 	public GradeSystems() {
         try {
             File file = new File("gradeinput.txt");
@@ -28,7 +36,11 @@ public class GradeSystems {
             ex.printStackTrace();
         }
 	}
-	
+	/*method showGrade----
+	 * Use iterator to find the student's info and print the student's scores.
+	 * @param ID: student ID
+	 * Time Estimated: O(n)
+	 */
 	public void showGrade(String ID){
 		for (Iterator<Grades> i = aGrades.iterator(); i.hasNext();) {
 			Grades current=((Grades)i.next());
@@ -43,7 +55,12 @@ public class GradeSystems {
 		      }
 		}
 	}
-	
+	/*method showRank-----
+	 * To calculate the rank by sorting aGrades, and print the result.
+	 * To sort aGrades, interface Comparator<Grades> has be used.
+	 * @param ID: student ID
+	 * Time Estimated: O(nlogn)
+	 */
 	public void showRank(String ID){
 		int rank=0, preGrade=110, add = 1;
 		Collections.sort(aGrades, new totalGradeComparator());
@@ -64,15 +81,24 @@ public class GradeSystems {
 		      }
 		}
 	}
-	
+	/*class totalGradeComparator------
+	 * To implement the interface Comparator, for sort function.
+	 * compare the totalGrade in Grades objects, sort the object from high score
+	 * to low score.
+	 */
 	class totalGradeComparator implements Comparator<Grades>{
 		@Override
 		public int compare(Grades grade1, Grades grade2){
 			return grade1.totalGrade < grade2.totalGrade ? 1: -1;
 		}
 	}
-	
-	public void updateWeights(String ID) {
+	/*method updateWeights----
+	 * To update the weights to calculate the totalscore.
+	 * After updating the the weights, user should type Y to finish,
+	 * or the modification will fail.
+	 * Time Estimated: O(1)
+	 */
+	public void updateWeights() {
 		String tmp;
 		float tmp_weights[] = new float[5];
 		System.out.println("舊配分:");
@@ -101,8 +127,15 @@ public class GradeSystems {
 			System.out.println("回到選單!");
 		}
 	}
-	
-	public boolean contaionsID(String ID) throws NoSuchIDExceptions{
+	/*method containsID-----
+	 * Use iterator to check if the student ID is stored in aGrades.
+	 * @return boolean: if student ID is in aGrades then return true,
+	 * 					else return false
+	 * @param ID: student ID
+	 * @throws NoSuchIDExceptions when ID is not in aGrades
+	 * Time Estimated: O(n)
+	 */
+	public boolean containsID(String ID) throws NoSuchIDExceptions{
 		boolean flag=false;
 		for (Iterator<Grades> i = aGrades.iterator(); i.hasNext();) {
 			Grades current=((Grades)i.next());
@@ -115,7 +148,11 @@ public class GradeSystems {
 		return flag;
 
 	}
-	
+	/*method showAverage------
+	 * Use iterator to find the student's info and print the average score.
+	 * @param ID: student ID
+	 * Time Estimated: O(n)
+	 */
 	public void showAverage(String ID){
 		for (Iterator<Grades> i = aGrades.iterator(); i.hasNext();) {
 			Grades current=((Grades)i.next());
@@ -124,7 +161,11 @@ public class GradeSystems {
 		      }
 		}
 	}
-	
+	/*method printWeights---
+	 * To print all the weights.
+	 * @param t_weights[]: the weights passed by updateWeights
+	 * Time Estimated: O(1)
+	 */
 	public void printWeights(float t_weights[]){
 		System.out.format("lab1:       "+"%4d%%\n", (int)(t_weights[0]*100));
 		System.out.format("lab2:       "+"%4d%%\n", (int)(t_weights[1]*100));
@@ -132,7 +173,13 @@ public class GradeSystems {
 		System.out.format("mid-term:   "+"%4d%%\n", (int)(t_weights[3]*100));
 		System.out.format("final exam: "+"%4d%%\n", (int)(t_weights[4]*100));
 	}
-	
+	/*method getName----
+	 * Use the student ID to find student's name from aGradeSystem.
+	 * Use iterator to run through aGrades to find student's name.
+	 * @return a string: student's name
+	 * @param ID: student's ID
+	 * Time Estimated: O(n)
+	 */
 	public String getName(String ID){
 		for (Iterator<Grades> i = aGrades.iterator(); i.hasNext();) {
 			Grades current=((Grades)i.next());
