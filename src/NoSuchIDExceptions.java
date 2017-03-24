@@ -6,6 +6,10 @@ public class NoSuchIDExceptions extends Exception {
 	 * @constructor:
 	 * 		print the error message.
 	 * 		@ID: the student ID user typed. 
+	 * 
+	 * Pseudo code
+	 * 1.print ID is not our student
+	 * Time Estimated: O(1)
 	 */
 	private static final long serialVersionUID = 1L;
 	

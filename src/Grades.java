@@ -21,6 +21,10 @@ public class Grades {
 	 * @param tname: student's name
 	 * @param tlab1, tlab2, tlab3, tmidTerm, tfinalExam: student's score from test.
 	 * @param weights[]: the weights to calculate totalGrade
+	 * 
+	 * Pseudo code
+	 * 1.將constructor傳進來的參數存到class
+	 * 2.執行calculateTotalGrade(weights)來計算加權過後的成績
 	 * Time Estimated: O(1)
 	 */
 	public Grades(String tID, String tname, int tlab1, int tlab2, int tlab3, int tmidTerm, int tfinalExam, float weights[]){	
@@ -37,6 +41,9 @@ public class Grades {
 	/*method calculateTotalGrade----
 	 * Add each score calculated by different weight, the weights sum is 1.
 	 * @param weights: the weight passed by aGradeSystem
+	 * 
+	 * Pseudo code
+	 * 1.利用傳進來的weights來計算加權成績
 	 * Time Estimated: O(1)
 	 */
 	public void calculateTotalGrade(float weights[]) {

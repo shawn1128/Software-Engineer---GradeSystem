@@ -17,6 +17,11 @@ public class GradeSystems {
 	List<Grades> aGrades = new ArrayList<Grades>();
 	/*constructor GradeSystems-----
 	 * To read the file, parse the content and store it to aGrades.
+	 * 
+	 * Pseudo code
+	 * 1.先宣告File file跟Scanner input
+	 * 2.利用input.hasNexLine來parse txt檔的內容，利用split來切割裡面的資料
+	 * 3.將學生資料用Grades存好，再將他們加進一個aGrades的list
 	 *  Time Estimated: O(n)
 	 */
 	public GradeSystems() {
@@ -39,6 +44,10 @@ public class GradeSystems {
 	/*method showGrade----
 	 * Use iterator to find the student's info and print the student's scores.
 	 * @param ID: student ID
+	 * 
+	 * Pseudo code
+	 * 1.使用iterator go through aGrades
+	 * 2.找到相同ID後print 出該學生的所有成績
 	 * Time Estimated: O(n)
 	 */
 	public void showGrade(String ID){
@@ -59,6 +68,11 @@ public class GradeSystems {
 	 * To calculate the rank by sorting aGrades, and print the result.
 	 * To sort aGrades, interface Comparator<Grades> has be used.
 	 * @param ID: student ID
+	 * 
+	 * Pseudo code
+	 * 1.利用自己implement 的totalGradeComparator來sort原有的aGrades，這是按照加權後的分數在sort，複雜度是O(nlogn)
+	 * 2.排序完之後花O(n)時間來找ID的位置
+	 * 3.找到後print出該學生的排名
 	 * Time Estimated: O(nlogn)
 	 */
 	public void showRank(String ID){
@@ -96,6 +110,13 @@ public class GradeSystems {
 	 * To update the weights to calculate the totalscore.
 	 * After updating the the weights, user should type Y to finish,
 	 * or the modification will fail.
+	 * 
+	 * Pseudo code
+	 * 1.執行printWeights(weights)，print 出原本的weights
+	 * 2.請使用者輸入更新後的weights
+	 * 3.執行printWeights(tmp_weights)，print 使用者更新的weights
+	 * 4.若使用者輸入Y，則在確認tmp_weights總合為1之後更新到aGradeSystem
+	 * 5.若使用者輸入N，則回到主選單
 	 * Time Estimated: O(1)
 	 */
 	public void updateWeights() {
@@ -117,7 +138,7 @@ public class GradeSystems {
 			System.out.println("以上正確嗎? Y (Yes) 或 N (No)");
 		}
 		if(tmp.equals("Y")){
-			if(weights[0]+weights[1]+weights[2]+weights[3]+weights[4]!=1){
+			if(tmp_weights[0]+tmp_weights[1]+tmp_weights[2]+tmp_weights[3]+tmp_weights[4]!=1){
 				System.out.println("配分總和需為1!");
 			}else{
 				weights = Arrays.copyOf(tmp_weights, tmp_weights.length);
@@ -133,6 +154,11 @@ public class GradeSystems {
 	 * 					else return false
 	 * @param ID: student ID
 	 * @throws NoSuchIDExceptions when ID is not in aGrades
+	 * 
+	 * Pseudo code
+	 * 1.用iterator go through aGrades，去看有沒有相同ID的object
+	 * 2.若有則回傳true
+	 * 3.若沒有則回傳false
 	 * Time Estimated: O(n)
 	 */
 	public boolean containsID(String ID) throws NoSuchIDExceptions{
@@ -151,6 +177,10 @@ public class GradeSystems {
 	/*method showAverage------
 	 * Use iterator to find the student's info and print the average score.
 	 * @param ID: student ID
+	 * 
+	 * Pseudo code
+	 * 1.用iterator go through aGrades，找到該學生的ID
+	 * 2.若有找到，則print該學生的平均成績
 	 * Time Estimated: O(n)
 	 */
 	public void showAverage(String ID){
@@ -164,6 +194,9 @@ public class GradeSystems {
 	/*method printWeights---
 	 * To print all the weights.
 	 * @param t_weights[]: the weights passed by updateWeights
+	 * 
+	 * Pseudo code
+	 * 1.print 出傳進來的t_weights
 	 * Time Estimated: O(1)
 	 */
 	public void printWeights(float t_weights[]){
@@ -178,6 +211,11 @@ public class GradeSystems {
 	 * Use iterator to run through aGrades to find student's name.
 	 * @return a string: student's name
 	 * @param ID: student's ID
+	 * 
+	 * Pseudo code
+	 * 1.利用iterator來go through aGrades(資料庫)
+	 * 2.若current.ID跟ID一樣則回傳該ID的名字
+	 * 3.若都沒有則回傳NULL
 	 * Time Estimated: O(n)
 	 */
 	public String getName(String ID){

@@ -21,6 +21,16 @@ public class UI {
 	 * and to show different results from different commands.
 	 * @throws NoSuchIDExceptions: throw msg when student ID is not in database.
 	 * @throws NoSuchCommandExceptions: throw msg when command is invalid.
+	 * 
+	 * Pseudo code
+	 * 1.宣告一個Scanner input, GradeSystems aGradeSystem
+	 * 2.開始無限迴圈
+	 * 3.執行promtID()讓使用者輸入ID or Q
+	 * 4.若輸入Q則結束程式
+	 * 5.若輸入ID則呼叫checkID()確認ID存在，若不存在throw NoSuchIDExceptions，若存在則呼叫promptCommand()
+	 * 讓使用者輸入相關指令
+	 * 6.針對使用者輸入的指令，先確認是否合法，若不合法則throw NoSuchCommandExceptions，若合法則執行該指令，
+	 * 接著持續promptCommand()直到使用者決定離開
 	 */
 	public UI() throws NoSuchIDExceptions, NoSuchCommandExceptions {
 		input = new Scanner(System.in);
@@ -64,6 +74,10 @@ public class UI {
 	 * @param ID: student ID
 	 * @return a boolean to check if ID exists
 	 * @method containsID: to check if student ID exists
+	 * 
+	 * Pseudo code
+	 * 1.呼叫aGradeSystem.containsID(ID)，他會透過iterator去確認ID是否存在
+	 * 2.若存在則回傳true, 不存在則回傳false
 	 * Time Estimated: O(n)
 	 */
 	public boolean checkID(String ID) throws NoSuchIDExceptions {
@@ -74,6 +88,10 @@ public class UI {
 	 * Constantly let user input commands
 	 * @param ID: student ID
 	 * return a String that represents user's command
+	 * 
+	 * Pseudo code
+	 * 1.print出所有相關指令請使用者輸入
+	 * 2.回傳使用者輸入的指令
 	 * Time Estimated: O(1)
 	 */
 	public String promptCommand(String ID) throws NoSuchCommandExceptions {
@@ -92,6 +110,11 @@ public class UI {
 	 * @return a boolean: 
 	 * if true means user input an ID, 
 	 * if false means user decides to quit the program (type Q)
+	 * 
+	 * Pseudo code
+	 * 1.讓使用者輸入ID或Q
+	 * 2.若輸入Q則回傳false
+	 * 3.若輸數ID則
 	 * Time Estimated: O(1)
 	 */
 	public boolean promptID() { 
@@ -108,7 +131,10 @@ public class UI {
 		
 	}
 	/*method showFinishMsg-----
-	 * show finish msg after user quit the program
+	 * show finish msg after user quit the program回傳true
+	 * 
+	 * Pseudo code
+	 * 1.使用者輸入Q，因此print See you next time!
 	 * Time Estimated: O(1)
 	 */
 	public void showFinishMsg() {
@@ -116,6 +142,9 @@ public class UI {
 	}
 	/*method WelcomeMsg-----
 	 * show welcome msg if student ID is in database
+	 * 
+	 * Pseudo code
+	 * 1.使用者輸入的ID合法，因此print Welcome+他的名字
 	 * Time Estimated: O(1)
 	 */
 	public void WelcomeMsg() {
