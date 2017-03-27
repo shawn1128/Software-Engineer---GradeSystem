@@ -1,4 +1,6 @@
+
 import java.util.Scanner;
+
 
 /*class UI------
  * To control all the procedures, including user's input, handle the id and command.
@@ -56,7 +58,9 @@ public class UI {
 						}else if(command.equals("A")){
 							aGradeSystem.showAverage(userID);
 						}else if(command.equals("W")){
-							aGradeSystem.updateWeights();
+							updateWeights();
+							
+							
 						}else if(command.equals("E")){
 							break;
 						}else{
@@ -149,5 +153,46 @@ public class UI {
 	 */
 	public void WelcomeMsg() {
 		System.out.println("Welcome " + aGradeSystem.getName(userID));
+	}
+	/*method updateWeights----
+	 * To update the weights to calculate the totalscore.
+	 * After updating the the weights, user should type Y to finish,
+	 * or the modification will fail.
+	 * 
+	 * Pseudo code
+	 * 1.執行printWeights(weights)，print 出原本的weights
+	 * 2.請使用者輸入更新後的weights
+	 * 3.執行printWeights(tmp_weights)，print 使用者更新的weights
+	 * 4.若使用者輸入Y，則在確認tmp_weights總合為1之後更新到aGradeSystem
+	 * 5.若使用者輸入N，則回到主選單
+	 * Time Estimated: O(1)
+	 */
+	public void updateWeights(){
+		System.out.println("舊配分:");
+		aGradeSystem.printWeights(aGradeSystem.weights);
+		float tmp_weights[] = new float[5];
+		String tmp;
+		System.out.println("輸入新配分:");
+		System.out.format("lab1:       "); tmp_weights[0] = input.nextFloat()/100;
+		System.out.format("lab2:       "); tmp_weights[1] = input.nextFloat()/100;
+		System.out.format("lab3:       "); tmp_weights[2] = input.nextFloat()/100;
+		System.out.format("mid-term:   "); tmp_weights[3] = input.nextFloat()/100;
+		System.out.format("final exam: "); tmp_weights[4] = input.nextFloat()/100;
+		System.out.println("請確認新配分");
+		aGradeSystem.printWeights(tmp_weights);
+		while(true){
+			tmp = input.nextLine();
+			if(tmp.equals("Y") || tmp.equals("N")) break;
+			System.out.println("以上正確嗎? Y (Yes) 或 N (No)");
+		}
+		if(tmp.equals("Y")){
+			if(tmp_weights[0]+tmp_weights[1]+tmp_weights[2]+tmp_weights[3]+tmp_weights[4]!=1){
+				System.out.println("配分總和需為1!");
+			}else{
+				aGradeSystem.updateWeights(tmp_weights);
+			}
+		}else if(tmp.equals("N")){
+			System.out.println("回到選單!");
+		}
 	}
 }
