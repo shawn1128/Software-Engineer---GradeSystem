@@ -13,7 +13,6 @@ import java.util.Scanner;
  */
 public class GradeSystems {
 	float weights[] = {0.1f, 0.1f, 0.1f, 0.3f, 0.4f};
-	Scanner w = new Scanner(System.in);
 	List<Grades> aGrades = new ArrayList<Grades>();
 	/*constructor GradeSystems-----
 	 * To read the file, parse the content and store it to aGrades.
